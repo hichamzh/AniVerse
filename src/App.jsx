@@ -1,12 +1,17 @@
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
-function App() {
-
+const App = () => {
   return (
-    <>
-        <h1 className='text-red-500'>TEST TAILWIND</h1>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
+
+
