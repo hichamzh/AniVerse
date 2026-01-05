@@ -28,7 +28,7 @@ const AnimeCard = ({ anime }) => {
         <h3 style={{ fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '4px' }}>
           {title.length > 20 ? title.slice(0, 20) + '...' : title}
         </h3>
-        <p style={{ fontSize: '0.8rem', color: '#555' }}>Score: {score}</p>
+        <p style={{ fontSize: '0.8rem', color: '#555' }}>Note: {score}</p>
         <p style={{ fontSize: '0.8rem', color: '#555' }}>Épisodes: {episodes}</p>
       </div>
     </div>

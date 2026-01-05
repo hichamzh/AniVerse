@@ -1,29 +1,22 @@
-const BASE_URL = 'https://api.jikan.moe/v4';
-
-const fetchWithRetry = async (url, retries = 2) => {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Status ${res.status}`);
-    return res.json();
-  } catch (err) {
-    if (retries > 0) {
-      await new Promise(r => setTimeout(r, 1000));
-      return fetchWithRetry(url, retries - 1);
-    } else {
-      console.error('API fetch failed:', err);
-      return null;
-    }
-  }
-};
+// src/services/jikanApi.js
+import api from './apiClient';
 
 export const getTrendingAnime = (limit = 5) =>
-  fetchWithRetry(`${BASE_URL}/top/anime?filter=bypopularity&limit=${limit}`);
+  api.get('/top/anime', {
+    params: { filter: 'bypopularity', limit }
+  }).then(res => res.data);
 
 export const getAnimeByGenre = (genreId, limit = 5) =>
-  fetchWithRetry(`${BASE_URL}/anime?genres=${genreId}&limit=${limit}`);
+  api.get('/anime', {
+    params: { genres: genreId, limit }
+  }).then(res => res.data);
 
 export const getSeasonNow = (limit = 5) =>
-  fetchWithRetry(`${BASE_URL}/seasons/now?limit=${limit}`);
+  api.get('/seasons/now', {
+    params: { limit }
+  }).then(res => res.data);
 
 export const getTopRatedAnime = (limit = 5) =>
-  fetchWithRetry(`${BASE_URL}/top/anime?limit=${limit}`);
+  api.get('/top/anime', {
+    params: { limit }
+  }).then(res => res.data);

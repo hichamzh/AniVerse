@@ -1,62 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { 
-  getAnimeByGenre, 
-  getSeasonNow, 
-  getTopRatedAnime, 
-  getTrendingAnime 
-} from '../../services/jikanApi';
+// src/components/layouts/AnimeSection.jsx
+import React from 'react';
 import AnimeCard from './AnimeCard';
 
-const AnimeSection = ({ title, genre, type, limit = 5 }) => {
-  const [animes, setAnimes] = useState([]);
-  const [loading, setLoading] = useState(true);
+const SkeletonCard = () => (
+  <div className="w-40 h-60 bg-gray-300 animate-pulse rounded-lg mr-2" />
+);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        let data = null;
-
-        if (type === 'season') {
-          data = await getSeasonNow(limit);
-        } else if (type === 'top') {
-          data = await getTopRatedAnime(limit);
-        } else if (type === 'trending') {
-          data = await getTrendingAnime(limit);
-        } else if (genre) {
-          data = await getAnimeByGenre(genre, limit);
-        }
-
-        console.log(title, data); 
-
-        
-        setAnimes(data?.data?.slice(0, limit) || []);
-
-      } catch (err) {
-        console.error('Erreur fetch AnimeSection:', err);
-        setAnimes([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const timer = setTimeout(() => {
-      fetchData();
-    }, 200); 
-
-    return () => clearTimeout(timer);
-  }, [genre, type, limit, title]);
-
-  if (loading) return <p>Loading {title}...</p>;
-  if (!animes.length) return <p>Aucun anime trouvé pour {title}</p>;
-
+const AnimeSection = ({ title, data = [], loading = false, showSkeleton = 5 }) => {
   return (
-    <div className="anime-section" style={{ marginBottom: '24px' }}>
-      <h2 style={{ marginBottom: '8px', fontWeight: 'bold', fontSize: '1.2rem' }}>{title}</h2>
-      <div style={{ display: 'flex', overflowX: 'auto', paddingBottom: '8px' }}>
-        {animes.map(anime => (
-          <AnimeCard key={anime.mal_id} anime={anime} />
-        ))}
+    <div className="anime-section mb-6">
+      <h2 className="font-bold text-lg mb-2">{title}</h2>
+      <div className="flex overflow-x-auto pb-2">
+        {loading
+          ? Array.from({ length: showSkeleton }).map((_, i) => <SkeletonCard key={i} />)
+          : data.map(anime => <AnimeCard key={anime.mal_id} anime={anime} />)}
       </div>
     </div>
   );
