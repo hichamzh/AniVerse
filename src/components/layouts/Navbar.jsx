@@ -2,7 +2,6 @@ import { useState } from "react";
 import { FiFacebook, FiInstagram, FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -10,7 +9,6 @@ export default function Navbar() {
     { name: "Catégorie", href: "/categorie" },
     { name: "Mes favoris", href: "/favoris" },
     { name: "Contact", href: "/contact" },
-    
   ];
 
   return (
@@ -19,7 +17,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           {/* Logo */}
           <Link
-            href="/"
+            to="/"
             className=" flex items-center gap-2 text-2xl font-bold text-fc-blue-dark"
           >
             <img
@@ -35,14 +33,13 @@ export default function Navbar() {
           {/* Desktop Links */}
           <ul className="hidden md:flex space-x-6">
             {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="hover:text-fc-blue-dark transition-colors"
-                >
-                  {link.name}
-                </Link>
-              </li>
+              <Link
+                key={link.name}
+                to={link.href}
+                className="hover:text-fc-blue-dark transition-colors"
+              >
+                <li>{link.name}</li>
+              </Link>
             ))}
             {/* Links Socials */}
             <li>
@@ -86,7 +83,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    to={link.href}
                     className="block px-2 py-2 rounded text-fc-white transition-colors"
                     onClick={() => setOpen(false)}
                   >
