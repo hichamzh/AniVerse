@@ -10,11 +10,11 @@ const AnimeCard = ({ anime }) => {
     <div
       className="anime-card"
       style={{
-        minWidth: '150px',
+        minWidth: '200px',
         marginRight: '12px',
         borderRadius: '8px',
         overflow: 'hidden',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.1)', 
         backgroundColor: '#fff',
         flexShrink: 0,
       }}

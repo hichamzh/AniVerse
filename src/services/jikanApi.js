@@ -1,4 +1,3 @@
-// src/services/jikanApi.js
 import api from './apiClient';
 
 export const getTrendingAnime = (limit = 5) =>

@@ -1,4 +1,3 @@
-// src/services/apiClient.js
 import axios from 'axios';
 
 const api = axios.create({
@@ -6,11 +5,10 @@ const api = axios.create({
   timeout: 10000,
 });
 
-// ⏳ File d’attente simple
 let queue = Promise.resolve();
 
 api.interceptors.request.use(config => {
-  queue = queue.then(() => new Promise(res => setTimeout(res, 800)));
+  queue = queue.then(() => new Promise(res => setTimeout(res, 1000)));
   return queue.then(() => config);
 });
 
@@ -28,3 +26,4 @@ api.interceptors.response.use(
 );
 
 export default api;
+  

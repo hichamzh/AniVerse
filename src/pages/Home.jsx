@@ -8,11 +8,9 @@ import { useAnime } from '../hooks/useAnime';
 import HeroSlider from '../components/layouts/HeroSlider';
 
 const Home = () => {
-  // Featured anime (top 1)
   const { data: featuredData, loading: loadingFeatured } = useAnime({ type: 'trending', limit: 1 });
   const featured = featuredData[0];
 
-  // Sections avec throttle + skeleton
   const { data: trending, loading: loadingTrending } = useAnime({ type: 'trending', limit: 5 });
   const { data: action, loading: loadingAction } = useAnime({ type: 'genre', genre: 1, limit: 5 });
   const { data: romance, loading: loadingRomance } = useAnime({ type: 'genre', genre: 22, limit: 5 });
@@ -22,12 +20,10 @@ const Home = () => {
 
   return (
     <div className="p-4">
-      {/* Featured anime */}
      <HeroSlider />
 
       {/* <HeroSection /> */}
 
-      {/* Sections avec skeleton */}
       <AnimeSection title="Tendance actuelle" data={trending} loading={loadingTrending} />
       <AnimeSection title="Action" data={action} loading={loadingAction} />
       <AnimeSection title="Romance" data={romance} loading={loadingRomance} />
