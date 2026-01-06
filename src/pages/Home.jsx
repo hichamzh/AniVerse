@@ -1,39 +1,61 @@
-// src/pages/Home.jsx
-import React from 'react';
-// import HeroSection from '../components/layouts/HeroSection';
-import AnimeSection from '../components/layouts/AnimeSection';
-// import HeroAnimeCard from '../components/layouts/HeroAnimeCard';
-// import BottomNav from '../components/layouts/BottomNav';
-import { useAnime } from '../hooks/useAnime';
-import HeroSlider from '../components/layouts/HeroSlider';
+import { useState, useEffect, useRef } from "react";
+import {
+  getPopularAnimes,
+  getSeasonAnimes,
+  getTopAnimes,
+} from "../services/api";
+import { AnimeSection } from "../components/layouts/AnimeSection";
 
-const Home = () => {
-  const { data: featuredData, loading: loadingFeatured } = useAnime({ type: 'trending', limit: 1 });
-  const featured = featuredData[0];
+export default function Home() {
+  const [topAnimes, setTopAnimes] = useState([]);
+  const [seasonAnimes, setSeasonAnimes] = useState([]);
+  const [popularAnimes, setPopularAnimes] = useState([]);
 
-  const { data: trending, loading: loadingTrending } = useAnime({ type: 'trending', limit: 5 });
-  const { data: action, loading: loadingAction } = useAnime({ type: 'genre', genre: 1, limit: 5 });
-  const { data: romance, loading: loadingRomance } = useAnime({ type: 'genre', genre: 22, limit: 5 });
-  const { data: comedy, loading: loadingComedy } = useAnime({ type: 'genre', genre: 4, limit: 5 });
-  const { data: season, loading: loadingSeason } = useAnime({ type: 'season', limit: 5 });
-  const { data: top, loading: loadingTop } = useAnime({ type: 'top', limit: 5 });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const hasFetched = useRef(false);
+
+  useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
+    const fetchDataApi = async () => {
+      try {
+        const [topAnimesData, seasonAnimesData, popularAnimesData] =
+          await Promise.all([
+            getTopAnimes(),
+            getSeasonAnimes(),
+            getPopularAnimes(),
+          ]);
+
+        setTopAnimes(topAnimesData);
+        setSeasonAnimes(seasonAnimesData);
+        setPopularAnimes(popularAnimesData);
+      } catch (error) {
+        console.error(error);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDataApi();
+  }, []);
+
+//   console.log(topAnimes);
+  
+  
+  if (loading) return <p>Chargement...</p>;
+  if (error) return <p>Erreur API Jikan</p>;
 
   return (
-    <div className="p-4">
-     <HeroSlider />
+    <>  
 
-      {/* <HeroSection /> */}
+        <AnimeSection titleSection="Top animes" data={topAnimes}/>
+        <AnimeSection titleSection="Saison" data={seasonAnimes}/>
+        <AnimeSection titleSection="Les plus populaires" data={popularAnimes}/>
 
-      <AnimeSection title="Tendance actuelle" data={trending} loading={loadingTrending} />
-      <AnimeSection title="Action" data={action} loading={loadingAction} />
-      <AnimeSection title="Romance" data={romance} loading={loadingRomance} />
-      <AnimeSection title="Comédie" data={comedy} loading={loadingComedy} />
-      <AnimeSection title="Nouveautés" data={season} loading={loadingSeason} />
-      <AnimeSection title="Les mieux notés" data={top} loading={loadingTop} />
-
-      {/* <BottomNav /> */}
-    </div>
+    </>
   );
-};
-
-export default Home;
+}
