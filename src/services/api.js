@@ -24,5 +24,5 @@ export const getSeasonAnimes = () => {
   return fecthApiJikan("seasons/now?limit=5");
 };
 export const getPopularAnimes = () => {
-  return fecthApiJikan("top/anime?limit=5");
+  return fecthApiJikan("top/anime?limit=5&filter=bypopularity");
 };
