@@ -6,7 +6,6 @@ const HeroSlider = () => {
   const { data: animes, loading } = useAnime({ type: 'trending', limit: 5 });
   const [current, setCurrent] = useState(0);
 
-  // Slide automatique toutes les 5 secondes
   useEffect(() => {
     if (!animes || animes.length === 0) return;
 
