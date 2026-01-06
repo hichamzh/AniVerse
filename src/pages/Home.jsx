@@ -5,6 +5,7 @@ import {
   getTopAnimes,
 } from "../services/api";
 import { AnimeSection } from "../components/layouts/AnimeSection";
+import HeroSlider from "../components/layouts/HeroSlider";
 
 export default function Home() {
   const [topAnimes, setTopAnimes] = useState([]);
@@ -51,7 +52,7 @@ export default function Home() {
 
   return (
     <>  
-
+        <HeroSlider anime={popularAnimes[0]} />
         <AnimeSection titleSection="Top animes" data={topAnimes}/>
         <AnimeSection titleSection="Saison" data={seasonAnimes}/>
         <AnimeSection titleSection="Les plus populaires" data={popularAnimes}/>
