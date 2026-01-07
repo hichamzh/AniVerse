@@ -60,7 +60,7 @@ export default function Home() {
 
   return (
     <>
-      <HeroSlider anime={popularAnimes[0]} />
+      {/* <HeroSlider anime={popularAnimes[0]} /> */}
       <AnimeSection titleSection="Top animes" data={topAnimes} />
       <AnimeSection titleSection="Saison" data={seasonAnimes} />
       <AnimeSection titleSection="Les plus populaires" data={popularAnimes} />
