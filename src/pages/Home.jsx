@@ -18,7 +18,6 @@ export default function Home() {
   const [actionAnimes, setActionAnimes] = useState([]);
   const [romanceAnimes, setRomanceAnimes] = useState([]);
   const [comedyAnimes, setComedyAnimes] = useState([]);
-  const [actionAnimes, setActionAnimes] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -33,7 +32,6 @@ export default function Home() {
 
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const fetchDataApi = async () => {
       try {
@@ -73,8 +71,6 @@ export default function Home() {
 
     fetchDataApi();
   }, []);
-
-  //   console.log(topAnimes);
 
   //   console.log(topAnimes);
 
