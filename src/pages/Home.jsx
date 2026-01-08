@@ -10,7 +10,6 @@ import {
 import { AnimeSection } from "../components/layouts/AnimeSection";
 import HeroSlider from "../components/layouts/HeroSlider";
 import { Link } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 
 export default function Home() {
