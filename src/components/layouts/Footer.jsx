@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
 
 export function Footer() {
-  const navLinks = [
-    { name: "Catégorie", href: "/categorie" },
-    { name: "Mes favoris", href: "/favoris" },
+const navLinks = [
+    { name: "Category", href: "/categorie" },
+    { name: "My favorites", href: "/favoris" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -50,7 +50,7 @@ export function Footer() {
           >
             AniVerse
           </Link>
-          . Tous droits réservés.
+          . All rights reserved.
         </span>
         <div className="social-icons flex mt-3 sm:justify-center items-center gap-5">
           <SocialIcon

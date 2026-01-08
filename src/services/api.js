@@ -40,6 +40,4 @@ export const getPopularAnimes = () => {
   return fecthApiJikan("top/anime?limit=5&filter=bypopularity");
 };
 
-export const getActionAnimes = () => {
-  return fecthApiJikan("anime?genres=1&limit=5")
-};
+

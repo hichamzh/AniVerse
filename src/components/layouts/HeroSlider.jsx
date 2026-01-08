@@ -16,7 +16,7 @@ const HeroSlider = ({ animes }) => {
   if (!animes || animes.length === 0) return null;
 
   return (
-    <div className="relative w-72 h-96 mx-auto my-4 rounded-xl overflow-hidden">
+    <div className="relative h-96 lg:w-96 lg:h-112 shadow-lg shadow-indigo-600 mx-auto my-4 rounded-xl overflow-hidden">
       {animes.map((anime, index) => (
         <img
           key={anime.mal_id || index}
@@ -30,7 +30,7 @@ const HeroSlider = ({ animes }) => {
         />
       ))}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent"></div>
 
       <div className="absolute bottom-4 left-4 text-white max-w-xs">
         <h2 className="text-lg font-bold mb-1">
