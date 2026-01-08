@@ -35,7 +35,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+    <section className="min-h-screen flex items-center justify-center px-4">
       <form ref={form}
         onSubmit={sendEmail}
         className="w-full max-w-md bg-slate-900 p-6 rounded-xl space-y-4">
@@ -59,6 +59,19 @@ export default function Contact() {
           rows="5"
           required
           className="w-full p-3 rounded bg-slate-800 text-white" />
+
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="cgu"
+            name="cgu"
+            required
+            className="w-4 h-4 cursor-pointer"
+          />
+          <label htmlFor="cgu" className="text-sm text-white">
+            J’accepte les <a href="/cgu" className="underline text-indigo-400">CGU</a>
+          </label>
+        </div>
 
         <button type="submit"
           disabled={loading}

@@ -6,13 +6,13 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navLinks = [
-    { name: "Catégorie", href: "/categorie" },
-    { name: "Mes favoris", href: "/favoris" },
+    { name: "Category", href: "/categorie" },
+    { name: "My favorites", href: "/favoris" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <header className="mb-16">
+    <header className="">
       <nav className="w-full bg-[#1A1A27] text-white shadow-md fixed top-0 left-0 z-50">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           {/* Logo */}
