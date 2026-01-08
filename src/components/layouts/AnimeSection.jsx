@@ -5,7 +5,7 @@ export const AnimeSection = ({ titleSection, data }) => {
 
   return (
     <section className="max-w-7xl mx-auto flex justify-center items-center">
-      <div className="px-4 py-8 text-white w-full">
+      <div className="px-4 py-8 xl:px-0 text-white w-full">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold border-l-4 border-indigo-500 pl-4">
             {titleSection}
@@ -40,7 +40,7 @@ export const AnimeSection = ({ titleSection, data }) => {
             <>
               <div className="flex items-center gap-5">
                 {Array.from({ length: skeletonCardNbr }, (_, i) => (
-                  <div key={i} className="animate-pulse w-52 h-72 rounded-lg overflow-hidden bg-gray-400"></div>
+                  <div key={i} className="animate-pulse w-40 md:w-60 h-72 rounded-lg overflow-hidden bg-gray-400"></div>
                 ))}
               </div>
             </>

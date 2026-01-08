@@ -9,8 +9,10 @@ import {
 } from "../services/api";
 import { AnimeSection } from "../components/layouts/AnimeSection";
 import HeroSlider from "../components/layouts/HeroSlider";
+import { Link } from "react-router-dom";
 
 export default function Home() {
+  
   const [topAnimes, setTopAnimes] = useState([]);
   const [seasonAnimes, setSeasonAnimes] = useState([]);
   const [popularAnimes, setPopularAnimes] = useState([]);
@@ -30,6 +32,7 @@ export default function Home() {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const fetchDataApi = async () => {
+
       try {
         const popularAnimesData = await getPopularAnimes();
         setPopularAnimes(popularAnimesData);
@@ -73,7 +76,7 @@ export default function Home() {
     <main className="min-h-screen pt-20">
       <section className="max-w-7xl mx-auto min-h-[80vh] flex items-center justify-center px-4 py-8">
         <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center gap-8 lg:gap-12">
-          <div className="w-full lg:w-1/2 space-y-6 text-white">
+          <div className="w-full lg:w-1/2 space-y-10 text-white">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black border-l-4 border-indigo-500 pl-4 uppercase tracking-tighter">
               Aniverse
             </h1>
@@ -83,12 +86,12 @@ export default function Home() {
               learn, and find your next favorite series.
             </p>
 
-            <button className="group px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg shadow-lg shadow-indigo-500/20 transition-all duration-300 uppercase text-sm lg:text-lg tracking-widest hover:scale-105 active:scale-95">
+            <Link className="group px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg shadow-lg shadow-indigo-500/20 transition-all duration-300 uppercase text-sm lg:text-lg tracking-widest hover:scale-105 active:scale-95">
               Explore the catalog{" "}
               <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">
                 →
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* Bloc slider */}
