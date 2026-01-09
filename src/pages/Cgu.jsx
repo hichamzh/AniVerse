@@ -1,54 +1,81 @@
 export default function Cgu() {
-    return (
-        <section className="min-h-screen text-slate-200 px-6 pt-20">
-            <div className="max-w-4xl mx-auto space-y-4">
-                <h1 className="text-3xl font-bold text-white text-center">
-                    Conditions Générales d’Utilisation
-                </h1>
+  return (
+    <section className="min-h-screen text-slate-200 px-6 pt-20">
+      <div className="max-w-4xl mx-auto space-y-4">
+        <h1 className="text-3xl font-bold text-white text-center">
+          Terms and Conditions of Use
+        </h1>
 
-                <p className="text-sm text-slate-400 text-center">
-                    Dernière mise à jour : {new Date().toLocaleDateString()}
-                </p>
+        <p className="text-sm text-slate-400 text-center">
+          Last update: {new Date().toLocaleDateString()}
+        </p>
 
-                <p>Le site <strong>AniVerse</strong> est une plateforme d’information dédiée aux animés. Il permet de découvrir des animés, consulter leurs fiches détaillées et suivre les tendances actuelles. AniVerse est un site informatif, sans compte utilisateur et sans système de paiement.</p>
+        <p>
+          The <strong>AniVerse</strong> website is an informational platform dedicated to anime.
+          It allows users to discover anime, view detailed information, and follow current trends.
+          AniVerse is an informational website with no user accounts and no payment system.
+        </p>
 
+        <h2 className="text-xl font-semibold text-white">1. Access to the website</h2>
+        <p>
+          Access to the AniVerse website is free and available to any user with an internet connection.
+          The publisher strives to ensure continuous accessibility, but interruptions may occur for
+          maintenance or technical reasons.
+        </p>
 
-                <h2 className="text-xl font-semibold text-white">1. Accès au site</h2>
-                <p>L’accès au site AniVerse est gratuit et ouvert à tout utilisateur disposant d’une connexion internet. L’éditeur s’efforce d’assurer une accessibilité continue, mais des interruptions peuvent survenir pour des raisons de maintenance ou techniques.</p>
+        <h2 className="text-xl font-semibold text-white">2. Personal data</h2>
+        <p>
+          AniVerse does not collect any personal data. The contact form is only used to send a message
+          by email, without storing or processing the information through the website.
+          <strong>
+            {" "}However, the content of the form is stored in the recipient’s email inbox
+            in order to process your request.
+          </strong>
+        </p>
 
+        <h2 className="text-xl font-semibold text-white">3. Cookies</h2>
+        <p>
+          The AniVerse website does not use any tracking, analytics, or advertising cookies.
+        </p>
 
-                <h2 className="text-xl font-semibold  text-white">2. Données personnelles</h2>
-               <p>AniVerse ne collecte aucune donnée personnelle. Le formulaire de contact permet uniquement d’envoyer un message par email, sans stockage ni exploitation des informations par le site. <strong>Cependant, le contenu du formulaire est conservé dans la boîte email du destinataire afin de permettre le traitement de votre demande.</strong></p>
+        <h2 className="text-xl font-semibold text-white">4. Data sources</h2>
+        <p>
+          Information related to anime is provided by the public <strong>Jikan</strong> API.
+          AniVerse is not affiliated with MyAnimeList or Jikan. The data is provided for informational
+          purposes only and may be incomplete or subject to change.
+        </p>
 
+        <h2 className="text-xl font-semibold text-white">5. Intellectual property</h2>
+        <p>
+          The website content (structure, design, code) is protected by intellectual property laws.
+          Images and information belong to their respective rights holders. Any reproduction is
+          prohibited without authorization.
+        </p>
 
-                <h2 className="text-xl font-semibold  text-white">3. Cookies</h2>
-                <p>Le site AniVerse n’utilise aucun cookie de suivi, d’analyse ou de publicité.</p>
+        <h2 className="text-xl font-semibold text-white">6. Liability</h2>
+        <p>
+          AniVerse is an informational website. The publisher cannot be held responsible for errors,
+          unavailability, or the use of information by users.
+        </p>
 
+        <h2 className="text-xl font-semibold text-white">7. External links</h2>
+        <p>
+          The website may contain links to external websites. AniVerse has no control over these
+          websites and declines any responsibility for their content.
+        </p>
 
-                <h2 className="text-xl font-semibold text-white">4. Sources des données</h2>
-                <p>Les informations relatives aux animés proviennent de l’API publique <strong>Jikan</strong>. AniVerse n’est pas affilié à MyAnimeList ou Jikan. Les données sont fournies à titre informatif et peuvent être incomplètes ou modifiées.</p>
+        <h2 className="text-xl font-semibold text-white">8. Changes to the Terms</h2>
+        <p>
+          These Terms and Conditions may be modified at any time to adapt to changes in the website
+          or legislation. Users are encouraged to review them regularly.
+        </p>
 
-        
-                <h2 className="text-xl font-semibold text-white">5. Propriété intellectuelle</h2>
-                <p>Les contenus du site (structure, design, code) sont protégés par le droit de la propriété intellectuelle. Les images et informations appartiennent à leurs ayants droit respectifs. Toute reproduction est interdite sans autorisation.</p>
-
-
-                <h2 className="text-xl font-semibold text-white">6. Responsabilité</h2>
-                <p>AniVerse est un site d’information. L’éditeur ne saurait être tenu responsable d’éventuelles erreurs, indisponibilités ou de l’usage des informations par l’utilisateur.</p>
-
-
-                <h2 className="text-xl font-semibold text-white">7. Liens externes</h2>
-                <p>Le site peut contenir des liens vers des sites externes. AniVerse n’exerce aucun contrôle sur ces sites et décline toute responsabilité.</p>
-
-
-                <h2 className="text-xl font-semibold text-white">8. Modification des CGU</h2>
-                <p>Les présentes CGU peuvent être modifiées à tout moment afin de s’adapter à l’évolution du site ou de la législation. Les utilisateurs sont invités à les consulter régulièrement.</p>
-
-
-                <h2 className="text-xl font-semibold text-white">9. Droit applicable</h2>
-                <p>Ces CGU sont soumises au droit applicable en vigueur. En cas de litige, une solution amiable sera privilégiée avant toute action judiciaire.</p>
-
-            </div>
-        </section>
-    );
+        <h2 className="text-xl font-semibold text-white">9. Applicable law</h2>
+        <p>
+          These Terms and Conditions are governed by the applicable laws in force. In the event of a
+          dispute, an amicable solution will be sought before any legal action.
+        </p>
+      </div>
+    </section>
+  );
 }

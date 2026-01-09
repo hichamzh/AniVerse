@@ -7,7 +7,7 @@ const navLinks = [
     { name: "Category", href: "/categorie" },
     { name: "My favorites", href: "/favoris" },
     { name: "Contact", href: "/contact" },
-    { name: "Conditions générales d'utilisation", href: "/cgu" },
+    { name: "Terms and Conditions", href: "/cgu" },
   ];
 
   return (

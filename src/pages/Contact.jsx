@@ -8,9 +8,17 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [cguError, setCguError] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
+    const isCguChecked = form.current.cgu.checked;
+    if (!isCguChecked) {
+      setCguError(true);
+      return;
+    }
+
+    setCguError(false);
     setLoading(true);
     setSuccess(false);
     setError(false);
@@ -43,7 +51,7 @@ export default function Contact() {
 
         <input type="text"
           name="user_name"
-          placeholder="Nom"
+          placeholder="Name"
           required
           className="w-full p-3 rounded bg-slate-800 text-white" />
 
@@ -65,18 +73,23 @@ export default function Contact() {
             type="checkbox"
             id="cgu"
             name="cgu"
-            required
             className="w-4 h-4 cursor-pointer"
           />
           <label htmlFor="cgu" className="text-sm text-white">
-            J’accepte les <a href="/cgu" className="underline text-indigo-400">CGU</a>
+            By ticking, you are confirming that you have read, understood and agree to our <a href="/cgu" className="underline text-indigo-400">terms and conditions</a>
           </label>
         </div>
 
+        {cguError && (
+          <Alert severity="error" className="mt-2">
+            You must accept the terms and conditions before submitting the form.
+          </Alert>
+        )}
+        
         <button type="submit"
           disabled={loading}
           className="w-full py-3 bg-indigo-600 rounded font-bold text-white disabled:opacity-50 cursor-pointer hover:bg-indigo-500 transition">
-          {loading ? "Envoi..." : "Envoyer"}
+          {loading ? "Sending..." : "Submit"}
         </button>
 
         {success && (
@@ -85,14 +98,14 @@ export default function Contact() {
             severity="success"
             className="mt-4"
           >
-            Message envoyé avec succès !
+            Your message has been sent successfully !
           </Alert>
         )}
 
         {error && (
           <Alert severity="error"
             className="mt-4">
-            Une erreur est survenue. Veuillez réessayer
+            an error has occurered. Please try again later
           </Alert>
         )}
       </form>
