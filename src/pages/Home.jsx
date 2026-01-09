@@ -48,9 +48,11 @@ export default function Home() {
 
         const actionAnimesData = await getActionAnimes();
         setActionAnimes(actionAnimesData);
+        setActionAnimes(actionAnimesData);
         await delay(600);
 
         const romanceAnimesData = await getRomanceAnimes();
+        setRomanceAnimes(romanceAnimesData);
         setRomanceAnimes(romanceAnimesData);
         await delay(600);
 

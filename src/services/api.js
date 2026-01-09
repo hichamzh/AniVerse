@@ -7,7 +7,7 @@ const jikanApi = axios.create({
   timeout: 10000,
 });
 
-const fecthApiJikan = async (endpoint) => {
+export const fecthApiJikan = async (endpoint) => {
   try {
     const res = await jikanApi.get(endpoint);
     return res.data.data;
@@ -38,6 +38,10 @@ export const getSeasonAnimes = () => {
 };
 export const getPopularAnimes = () => {
   return fecthApiJikan("top/anime?limit=5&filter=bypopularity");
+};
+
+export const getAnimeDetails = (id) => {
+  return fecthApiJikan(`anime/${id}`)
 };
 
 

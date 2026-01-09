@@ -5,6 +5,7 @@ import { Footer } from './components/layouts/Footer';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Cgu from './pages/Cgu';
+import { AnimeDetails } from './components/layouts/AnimeDetails';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/favoris" element={ <></>} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cgu" element={<Cgu />} />
+        <Route path="/anime/:id" element={<AnimeDetails/>} />
       </Routes>
       <Footer />
     </Router>
