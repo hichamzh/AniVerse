@@ -6,7 +6,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navLinks = [
-    { name: "Category", href: "/categorie" },
+    { name: "Catalog", href: "/categorie" },
     { name: "My favorites", href: "/favoris" },
     { name: "Contact", href: "/contact" },
   ];
