@@ -37,7 +37,7 @@ const Favoris = () => {
   if (loading) {
     return (
       <section className="max-w-7xl mx-auto px-4 py-8  text-white">
-        <p className="text-gray-400">Chargement des favoris...</p>
+        <p className="text-gray-400">Loading your favorites...</p>
       </section>
     );
   }
@@ -45,14 +45,14 @@ const Favoris = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 py-8 pt-20 text-white">
       <div className="flex items-center justify-between bg-indigo-600 rounded-lg px-6 py-4 mb-6 shadow-md">
-        <h1 className="text-2xl md:text-3xl font-bold">Vos Favoris</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Your favorites</h1>
         <span className="bg-white text-indigo-600 font-bold px-3 py-1 rounded-full shadow">
           {favorites.length} {favorites.length === 1 ? "favori" : "favoris"}
         </span>
       </div>
 
       {animes.length === 0 ? (
-        <p className="text-gray-400 text-center">Vous n'avez pas encore de favoris.</p>
+        <p className="text-gray-400 text-center">You don't have favorite yet</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {animes.map((anime) => (
