@@ -5,6 +5,7 @@ import { Footer } from './components/layouts/Footer';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Cgu from './pages/Cgu';
+import Favoris from './pages/Favoris';
 import { AnimeDetails } from './components/layouts/AnimeDetails';
 import { NotFound } from './components/layouts/NotFound';
 import ScrollToTop from './components/layouts/ScrollToTop';
@@ -17,7 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorie" element={<></>} />
-        <Route path="/favoris" element={ <></>} />
+        <Route path="/favoris" element={ <Favoris />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cgu" element={<Cgu />} />
         <Route path="/anime/:id" element={<AnimeDetails/>} />
