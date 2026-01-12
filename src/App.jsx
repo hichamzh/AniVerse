@@ -5,28 +5,31 @@ import { Footer } from './components/layouts/Footer';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Cgu from './pages/Cgu';
+import Favoris from './pages/Favoris';
 import { AnimeDetails } from './components/layouts/AnimeDetails';
 import { NotFound } from './components/layouts/NotFound';
 import ScrollToTop from './components/layouts/ScrollToTop';
+import { FavoritesProvider } from './hooks/useFavorites';
 import Catalogue from './pages/Catalogue';
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <ScrollToTop/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/categorie" element={<Catalogue/>} />
-        <Route path="/favoris" element={ <></>} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/cgu" element={<Cgu />} />
-        <Route path="/anime/:id" element={<AnimeDetails/>} />
-        <Route path="*" element={<NotFound />} />
-
-      </Routes>
-      <Footer />
-    </Router>
+    <FavoritesProvider>
+      <Router>
+        <Navbar />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/categorie" element={<Catalogue/>} />
+          <Route path="/favoris" element={<Favoris />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/cgu" element={<Cgu />} />
+          <Route path="/anime/:id" element={<AnimeDetails />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </FavoritesProvider>
   );
 };
 

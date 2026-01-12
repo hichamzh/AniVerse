@@ -1,25 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import StarIcon from '@mui/icons-material/Star';
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
+import  { useFavorites } from "../../hooks/useFavorites"
 
 export const AnimeSection = ({ titleSection, data }) => {
   const skeletonCardNbr = 5;
 
-  const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem("favorites");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  const toggleFavorite = (mal_id) => {
-    setFavorites((prev) => {
-      const newFav = prev.includes(mal_id)
-        ? prev.filter((id) => id !== mal_id)
-        : [...prev, mal_id];
-      localStorage.setItem("favorites", JSON.stringify(newFav));
-      return newFav;
-    });
-  };
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
     <section className="max-w-7xl mx-auto flex justify-center items-center">
@@ -32,24 +19,24 @@ export const AnimeSection = ({ titleSection, data }) => {
 
         <div className="flex overflow-x-auto xl:overflow-x-hidden gap-4 pb-6 scrollbar-hide snap-x snap-mandatory transition-all">
           {data.length > 0 ? (
-            data.map((anime, index) => (
+            data.map((anime) => (
               <div
-                key={index}
+                key={anime.mal_id}
                 className="relative flex-none w-40 md:w-60 snap-start group"
               >
 
                 <button
                   onClick={() => toggleFavorite(anime.mal_id)}
-                  className={`
+                  className={`  
                    absolute top-2 left-2 z-10 p-2 rounded-lg cursor-pointer
                    transition-all duration-300
-                   ${favorites.includes(anime.mal_id) ? "bg-red-600" : "bg-indigo-600"}
+                   ${isFavorite(anime.mal_id) ? "bg-red-600" : "bg-indigo-600"}
                    group-hover:scale-110
                    hover:shadow-lg
                  `}
-                 aria-label="Add to favorites"
+                  aria-label="Add to favorites"
                 >
-                  {favorites.includes(anime.mal_id) ? (
+                  {isFavorite(anime.mal_id) ? (
                     <FaHeart className="text-white" />
                   ) : (
                     <FaRegHeart className="text-gray-200" />
@@ -69,7 +56,7 @@ export const AnimeSection = ({ titleSection, data }) => {
                   {anime.score && (
                     <span className="absolute top-2 right-2 bg-indigo-600 text-white text-sm font-bold px-2 py-1 rounded-lg shadow-md flex items-center gap-1">
                       {anime.score.toFixed(1)}
-                      <StarIcon fontSize="small" />
+                      <FaStar className="text-yellow-400" size={20} />
                     </span>
                   )}
 
@@ -100,4 +87,3 @@ export const AnimeSection = ({ titleSection, data }) => {
     </section>
   );
 };
-  
