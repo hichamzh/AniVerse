@@ -6,11 +6,14 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Cgu from './pages/Cgu';
 import { AnimeDetails } from './components/layouts/AnimeDetails';
+import { NotFound } from './components/layouts/NotFound';
+import ScrollToTop from './components/layouts/ScrollToTop';
 
 const App = () => {
   return (
     <Router>
       <Navbar />
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorie" element={<></>} />
@@ -18,6 +21,8 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/cgu" element={<Cgu />} />
         <Route path="/anime/:id" element={<AnimeDetails/>} />
+        <Route path="*" element={<NotFound />} />
+
       </Routes>
       <Footer />
     </Router>

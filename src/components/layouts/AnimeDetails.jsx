@@ -17,7 +17,7 @@ export const AnimeDetails = () => {
     fetchData();
   }, [id]);
 
-  console.log(animeDetails);
+  // console.log(animeDetails);
 
   return (
     <main className="min-h-screen pt-16">
@@ -27,7 +27,7 @@ export const AnimeDetails = () => {
             animeDetails?.images?.webp?.large_image_url ||
             animeDetails?.images?.jpg?.large_image_url
           }
-          alt={animeDetails?.title_english || animeDetails?.title_synonyms[0]}
+          alt={animeDetails?.title_english || animeDetails?.title_synonyms?.[0] || "Image du manga"}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-t from-[#0b0b0f] via-black/60 to-transparent" />
@@ -42,9 +42,9 @@ export const AnimeDetails = () => {
                 animeDetails?.images?.jpg?.large_image_url
               }
               alt={
-                animeDetails?.title_synonyms[0] || animeDetails?.title_english
+                animeDetails?.title_synonyms?.[0] || animeDetails?.title_english || "Image from the manga"
               }
-              className="w-80 rounded-xl shadow-2xl shadow-indigo-600"
+              className="max-w-80 rounded-xl shadow-2xl shadow-indigo-600"
             />
           </div>
           <div className="flex flex-col sm:gap-5 w-full sm:w-auto items-center sm:items-start">
@@ -73,7 +73,7 @@ export const AnimeDetails = () => {
               <span className="flex items-center gap-2">
                 <FaStar className="text-yellow-400" size={20} />
                 <span className=" font-bold text-white">
-                  {animeDetails?.score}
+                  {animeDetails?.score || "No notes found"}
                 </span>
               </span>
             </div>
@@ -89,7 +89,7 @@ export const AnimeDetails = () => {
             </div>
             <div className="flex items-center gap-3 my-4">
               <a
-                href={animeDetails?.trailer.embed_url}
+                href={animeDetails?.trailer?.embed_url}
                 target="_blank"
                 className="flex w-fit items-center gap-2 px-5 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition"
               >

@@ -47,6 +47,7 @@ export const AnimeSection = ({ titleSection, data }) => {
                    group-hover:scale-110
                    hover:shadow-lg
                  `}
+                 aria-label="Add to favorites"
                 >
                   {favorites.includes(anime.mal_id) ? (
                     <FaHeart className="text-white" />
