@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import StarIcon from '@mui/icons-material/Star';
 import { FaHeart, FaRegHeart } from "react-icons/fa";
