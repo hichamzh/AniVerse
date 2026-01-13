@@ -48,8 +48,8 @@ export const getAllGenres = () => {
   return fecthApiJikan('genres/anime')
 }
 
-export const getAnimeByGenre = (id) => {
-  return fecthApiJikan(`anime?genres=${id}`)
+export const getAnimeByGenre = (id, page) => {
+  return fecthApiJikan(`anime?genres=${id}&page=${page}`)
 }
 
 
