@@ -120,7 +120,7 @@ export default function Catalogue() {
                   <div className="flex items-center gap-3 text-indigo-400">
                     <div className="w-5 h-5 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
                     <span className="text-sm font-medium">
-                      Chargement des animés...
+                      Loading anime...
                     </span>
                   </div>
                 </div>
@@ -243,10 +243,10 @@ export default function Catalogue() {
                     <div className="w-full flex justify-center items-center">
                       <div className="flex flex-col items-center gap-2 px-6 py-5 rounded-xl border border-indigo-600/40 bg-indigo-600/10 text-slate-300 text-sm">
                         <span className="font-semibold text-indigo-400">
-                          Aucun résultat trouvé
+                          No results found
                         </span>
                         <span className="text-slate-400">
-                          Essayez de modifier ou supprimer certains filtres
+                          Try modifying or removing some filters
                         </span>
                       </div>
                     </div>
