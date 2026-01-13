@@ -20,8 +20,8 @@ const App = () => {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/categorie" element={<Catalogue/>} />
-          <Route path="/favoris" element={<Favoris />} />
+          <Route path="/catalog" element={<Catalogue/>} />
+          <Route path="/favorites" element={<Favoris />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cgu" element={<Cgu />} />
           <Route path="/anime/:id" element={<AnimeDetails />} />

@@ -88,7 +88,7 @@ export default function Home() {
               learn, and find your next favorite series.
             </p>
 
-            <Link className="group px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg shadow-lg shadow-indigo-500/20 transition-all duration-300 uppercase text-sm lg:text-lg tracking-widest hover:scale-105 active:scale-95">
+            <Link to={"/catalog"} className="group px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg shadow-lg shadow-indigo-500/20 transition-all duration-300 uppercase text-sm lg:text-lg tracking-widest hover:scale-105 active:scale-95">
               Explore the catalog{" "}
               <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">
                 →

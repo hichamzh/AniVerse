@@ -41,6 +41,7 @@ export default function Catalogue() {
   }, []);
 
   const handleCheckbox = (id) => {
+    setPagePagination(1);
     if (selectedGenre.includes(id)) {
       setSelectedGenre(selectedGenre.filter((genre) => genre !== id));
     } else {
@@ -61,8 +62,8 @@ export default function Catalogue() {
           selectedGenre.join(","),
           pagePagination
         );
-        setAnimes(response.data ?? response);
-        setHasNextPage(response.pagination?.has_next_page);
+        setAnimes(response.data);
+        setHasNextPage(response.pagination?.has_next_page ?? false);
       } catch (error) {
         console.error(error);
         setAnimes([]);
