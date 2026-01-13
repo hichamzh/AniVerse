@@ -34,7 +34,7 @@ const navLinks = [
               <Link
                 key={link.name}
                 to={link.href}
-                className="hover:text-fc-blue-dark transition-colors"
+                className="hover:text-indigo-600 transition-colors"
               >
                 <li>{link.name}</li>
               </Link>

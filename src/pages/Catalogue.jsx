@@ -86,7 +86,7 @@ export default function Catalogue() {
         <section className="flex flex-col lg:flex-row gap-10 items-start">
           <aside className="w-full lg:w-72 shrink-0 flex flex-col">
             <button
-              className="flex justify-between items-center  mb-5 text-sm uppercase font-bold border border-indigo-600 bg-indigo-600/20 rounded-lg px-6 py-4"
+              className="flex justify-between items-center cursor-pointer  mb-5 text-sm uppercase font-bold border border-indigo-600 bg-indigo-600/20 rounded-lg px-6 py-4"
               onClick={() => setIsVisible((prev) => !prev)}
             >
               <div className="flex items-center gap-2">
@@ -100,7 +100,7 @@ export default function Catalogue() {
                 {genres.map((genre) => (
                   <label
                     key={genre.mal_id}
-                    className="flex items-center gap-2 border text-sm rounded-md border-indigo-600 bg-indigo-600/20 px-2 py-2"
+                    className="cursor-pointer flex items-center gap-2 border text-sm rounded-md border-indigo-600 bg-indigo-600/20 px-2 py-2"
                   >
                     <input
                       type="checkbox"
