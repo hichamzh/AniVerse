@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { getAnimeDetails } from "../../services/api";
 import { FaYoutube } from "react-icons/fa6";
 import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
+import { useFavorites } from "../../hooks/useFavorites";
 
 export const AnimeDetails = () => {
   const { id } = useParams();
-  const [animeDetails, setAnimeDetails] = useState(null);
+  const [animeDetails, setAnimeDetails] = useState([]);
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,11 @@ export const AnimeDetails = () => {
             animeDetails?.images?.webp?.large_image_url ||
             animeDetails?.images?.jpg?.large_image_url
           }
-          alt={animeDetails?.title_english || animeDetails?.title_synonyms?.[0] || "Image du manga"}
+          alt={
+            animeDetails?.title_english ||
+            animeDetails?.title_synonyms?.[0] ||
+            "Image du manga"
+          }
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-t from-[#0b0b0f] via-black/60 to-transparent" />
@@ -42,7 +48,9 @@ export const AnimeDetails = () => {
                 animeDetails?.images?.jpg?.large_image_url
               }
               alt={
-                animeDetails?.title_synonyms?.[0] || animeDetails?.title_english || "Image from the manga"
+                animeDetails?.title_synonyms?.[0] ||
+                animeDetails?.title_english ||
+                "Image from the manga"
               }
               className="max-w-80 rounded-xl shadow-2xl shadow-indigo-600"
             />
@@ -51,11 +59,10 @@ export const AnimeDetails = () => {
             <h1 className="text-4xl lg:text-6xl font-black text-white my-4 tracking-tight">
               {animeDetails?.title}
             </h1>
-            {animeDetails?.title_japanese && (
-              <h2 className="text-xl lg:text-2xl text-indigo-300 font-light">
-                {animeDetails?.title_japanese}
-              </h2>
-            )}
+
+            <h2 className="text-xl lg:text-2xl text-indigo-300 font-light">
+              {animeDetails?.title_japanese}
+            </h2>
 
             <div className="flex items-center flex-wrap gap-3 mb-5 text-base lg:text-lg font-semibold">
               <span className="">
@@ -78,9 +85,9 @@ export const AnimeDetails = () => {
               </span>
             </div>
             <div className="flex items-center gap-3 flex-wrap">
-              {animeDetails?.genres.map((genre, index) => (
+              {animeDetails?.genres?.map((genre, index) => (
                 <span
-                  key={index}
+                  key={genre.mal_id}
                   className="px-4 py-2 bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/30 rounded-full text-sm font-medium text-indigo-200 hover:bg-indigo-600/30 transition-colors cursor-pointer"
                 >
                   {genre.name}
@@ -96,8 +103,26 @@ export const AnimeDetails = () => {
                 <FaYoutube size={20} />
                 Watch Trailer
               </a>
-              <button className="flex items-center gap-2 px-5 py-4 bg-white/10 hover:bg-white/20 rounded-lg transition">
-                <FaHeart />
+              <button
+                onClick={() => toggleFavorite(animeDetails.mal_id)}
+                className={`  
+                      p-4 rounded-lg cursor-pointer
+                        transition-all duration-300
+                        ${
+                          isFavorite(animeDetails.mal_id)
+                            ? "bg-red-600"
+                            : "bg-indigo-600"
+                        }
+                        group-hover:scale-110
+                        hover:shadow-lg
+                        `}
+                aria-label="Add to favorites"
+              >
+                {isFavorite(animeDetails.mal_id) ? (
+                  <FaHeart className="text-white" />
+                ) : (
+                  <FaRegHeart className="text-gray-200" />
+                )}
               </button>
             </div>
           </div>

@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
 import { IoAlbums } from "react-icons/io5";
 import { VscSettings } from "react-icons/vsc";
-import {
-  FaHeart,
-  FaRegHeart,
-  FaStar,
-  FaChevronDown,
-  FaArrowLeft,
-  FaArrowRight,
-} from "react-icons/fa";
+import { FaChevronDown, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { getAllGenres, getAnimeByGenre, getTopAnimes } from "../services/api";
 import { useFavorites } from "../hooks/useFavorites";
-import { Link } from "react-router-dom";
+import { AnimeCard } from "../components/layouts/AnimeCard";
 
 export default function Catalogue() {
   const [genres, setGenres] = useState([]);
@@ -30,33 +23,37 @@ export default function Catalogue() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const genres = await getAllGenres();
-      setGenres(genres);
-      await delay(200);
-      const topAnime = await getTopAnimes();
-      setAnimesDefault(topAnime);
+      try {
+        const genres = await getAllGenres();
+        setGenres(genres);
+        await delay(200);
+        const topAnime = await getTopAnimes();
+        setAnimesDefault(topAnime);
+      } catch (error) {
+        console.error("Erreur lors du chargement initial:", err);
+      }
     };
 
     fetchData();
   }, []);
 
-  const handleCheckbox = (id) => {
+  useEffect(() => {
     setPagePagination(1);
-    if (selectedGenre.includes(id)) {
-      setSelectedGenre(selectedGenre.filter((genre) => genre !== id));
-    } else {
-      setSelectedGenre([...selectedGenre, id]);
-    }
+    setAnimes([]);
+  }, [selectedGenre]);
+
+  const handleCheckbox = (id) => {
+    setSelectedGenre((prev) =>
+      prev.includes(id) ? prev.filter((genre) => genre !== id) : [...prev, id]
+    );
   };
 
   useEffect(() => {
-    const fetchAnimeGenre = async () => {
-      if (selectedGenre.length === 0) {
-        setAnimes([]);
-        return;
-      }
+    if (selectedGenre.length === 0) return;
 
+    const fetchAnimeGenre = async () => {
       setLoading(true);
+
       try {
         const response = await getAnimeByGenre(
           selectedGenre.join(","),
@@ -64,6 +61,10 @@ export default function Catalogue() {
         );
         setAnimes(response.data);
         setHasNextPage(response.pagination?.has_next_page ?? false);
+
+        if (pagePagination > 1) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       } catch (error) {
         console.error(error);
         setAnimes([]);
@@ -114,6 +115,7 @@ export default function Catalogue() {
               </div>
             )}
           </aside>
+
           <section className="contenu w-full">
             <div className="flex flex-wrap justify-center gap-5">
               {loading && (
@@ -125,120 +127,24 @@ export default function Catalogue() {
                     </span>
                   </div>
                 </div>
-              )}{" "}
+              )}
               {animes.length > 0
                 ? animes.map((anime) => (
-                    <div
+                    <AnimeCard
                       key={anime.mal_id}
-                      className="relative flex-none w-40 md:w-60 snap-start group"
-                    >
-                      <button
-                        onClick={() => toggleFavorite(anime.mal_id)}
-                        className={`  
-                        absolute top-2 left-2 z-10 p-2 rounded-lg cursor-pointer
-                        transition-all duration-300
-                        ${
-                          isFavorite(anime.mal_id)
-                            ? "bg-red-600"
-                            : "bg-indigo-600"
-                        }
-                        group-hover:scale-110
-                        hover:shadow-lg
-                        `}
-                        aria-label="Add to favorites"
-                      >
-                        {isFavorite(anime.mal_id) ? (
-                          <FaHeart className="text-white" />
-                        ) : (
-                          <FaRegHeart className="text-gray-200" />
-                        )}
-                      </button>
-
-                      <Link
-                        to={`/anime/${anime.mal_id}`}
-                        className="relative aspect-2/3 rounded-lg overflow-hidden border border-slate-800 transition-transform duration-300 group-hover:scale-95 block"
-                      >
-                        <img
-                          src={anime.images.webp.image_url}
-                          alt={anime.title}
-                          className="w-full h-full object-cover"
-                        />
-
-                        {anime.score && (
-                          <span className="absolute top-2 right-2 bg-indigo-600 text-white text-sm font-bold px-2 py-1 rounded-lg shadow-md flex items-center gap-1">
-                            {anime.score.toFixed(1)}
-                            <FaStar className="text-yellow-400" size={20} />
-                          </span>
-                        )}
-
-                        <div className="hidden absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex items-end p-3">
-                          <div className="w-full py-2 bg-indigo-600 text-xs text-center font-bold rounded hover:bg-indigo-500 transition-colors">
-                            SEE MORE
-                          </div>
-                        </div>
-                      </Link>
-
-                      <h3 className="mt-3 text-sm font-medium leading-tight line-clamp-2 group-hover:text-indigo-400 transition-colors">
-                        {anime.title}
-                      </h3>
-                    </div>
+                      anime={anime}
+                      isFavorite={isFavorite}
+                      toggleFavorite={toggleFavorite}
+                    />
                   ))
                 : selectedGenre.length <= 0
                 ? animesDefault.map((anime) => (
-                    <div
+                    <AnimeCard
                       key={anime.mal_id}
-                      className="relative flex-none w-40 md:w-60 snap-start group"
-                    >
-                      <button
-                        onClick={() => toggleFavorite(anime.mal_id)}
-                        className={`  
-                        absolute top-2 left-2 z-10 p-2 rounded-lg cursor-pointer
-                        transition-all duration-300
-                        ${
-                          isFavorite(anime.mal_id)
-                            ? "bg-red-600"
-                            : "bg-indigo-600"
-                        }
-                        group-hover:scale-110
-                        hover:shadow-lg
-                        `}
-                        aria-label="Add to favorites"
-                      >
-                        {isFavorite(anime.mal_id) ? (
-                          <FaHeart className="text-white" />
-                        ) : (
-                          <FaRegHeart className="text-gray-200" />
-                        )}
-                      </button>
-
-                      <Link
-                        to={`/anime/${anime.mal_id}`}
-                        className="relative aspect-2/3 rounded-lg overflow-hidden border border-slate-800 transition-transform duration-300 group-hover:scale-95 block"
-                      >
-                        <img
-                          src={anime.images.webp.image_url}
-                          alt={anime.title}
-                          className="w-full h-full object-cover"
-                        />
-
-                        {anime.score && (
-                          <span className="absolute top-2 right-2 bg-indigo-600 text-white text-sm font-bold px-2 py-1 rounded-lg shadow-md flex items-center gap-1">
-                            {anime.score.toFixed(1)}
-                            <FaStar className="text-yellow-400" size={20} />
-                          </span>
-                        )}
-
-                        <div className="hidden absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:flex items-end p-3">
-                          <div className="w-full py-2 bg-indigo-600 text-xs text-center font-bold rounded hover:bg-indigo-500 transition-colors">
-                            SEE MORE
-                          </div>
-                        </div>
-                      </Link>
-
-                      <h3 className="mt-3 text-sm font-medium leading-tight line-clamp-2 group-hover:text-indigo-400 transition-colors">
-                        {anime.title}
-                      </h3>
-                    </div>
+                      anime={anime}
+                      isFavorite={isFavorite}
+                      toggleFavorite={toggleFavorite}
+                    />
                   ))
                 : !loading && (
                     <div className="w-full flex justify-center items-center">
