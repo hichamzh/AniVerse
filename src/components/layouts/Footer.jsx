@@ -55,17 +55,12 @@ const navLinks = [
         </span>
         <div className="social-icons flex mt-3 sm:justify-center items-center gap-5">
           <SocialIcon
-            url=""
+            url="https://github.com/hichamzh"
             style={{ height: 40, width: 40 }}
-            label=""
+            label="Profil github"
           />
           <SocialIcon
-            url=""
-            style={{ height: 40, width: 40 }}
-            label=""
-          />
-          <SocialIcon
-            url=""
+            url="www.linkedin.com/in/hicham-zouit"
             style={{ height: 40, width: 40 }}
             label=""
           />
