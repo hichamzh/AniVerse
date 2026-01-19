@@ -41,7 +41,7 @@ const Favoris = () => {
             return newArr;
           });
 
-          await delay(600);
+          await delay(1000);
         }
       } catch (error) {
         console.error("Erreur chargement favoris :", error);
